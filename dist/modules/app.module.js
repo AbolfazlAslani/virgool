@@ -9,7 +9,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
+const typeorm_1 = require("@nestjs/typeorm");
 const path_1 = require("path");
+const typeorm_config_1 = require("../configs/typeorm.config");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -18,8 +20,9 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
-                envFilePath: (0, path_1.join)(process.cwd(), '.env'),
-            })
+                envFilePath: (0, path_1.join)(process.cwd(), '.env')
+            }),
+            typeorm_1.TypeOrmModule.forRoot((0, typeorm_config_1.TypeOrmConfig)())
         ],
         controllers: [],
         providers: [],
